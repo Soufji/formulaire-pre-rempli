@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire Pré-rempli</title>
+</head>
+<body>
+    <h1>Formulaire de Carte Bancaire</h1>
+    <form id="payment-form">
+        <label for="name">Nom sur la carte:</label>
+        <input type="text" id="name" name="name"><br><br>
+
+        <label for="card_number">Numéro de carte:</label>
+        <input type="text" id="card_number" name="card_number"><br><br>
+
+        <label for="cvc">Cryptogramme visuel (CVC):</label>
+        <input type="text" id="cvc" name="cvc"><br><br>
+
+        <label for="expiration_date">Date d'expiration:</label>
+        <input type="text" id="expiration_date" name="expiration_date"><br><br>
+
+        <input type="submit" value="Envoyer">
+    </form>
+
+    <script>
+        // Fonction pour récupérer les paramètres de l'URL et remplir le formulaire
+        function fillFormFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            document.getElementById('name').value = urlParams.get('name') || '';
+            document.getElementById('card_number').value = urlParams.get('card_number') || '';
+            document.getElementById('cvc').value = urlParams.get('cvc') || '';
+            document.getElementById('expiration_date').value = urlParams.get('expiration_date') || '';
+        }
+
+        // Appel de la fonction pour remplir le formulaire lorsque la page se charge
+        window.onload = fillFormFromUrl;
+    </script>
+</body>
+</html>
